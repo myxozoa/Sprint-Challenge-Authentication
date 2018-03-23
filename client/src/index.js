@@ -2,8 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Login from './components/login';
+import Jokes from './components/jokes';
+import Logout from './components/logout';
+import Register from './components/register';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import reducers from './reducers';
+
 import ReduxThunk from 'redux-thunk';
 import Provider from 'react-redux';
 
