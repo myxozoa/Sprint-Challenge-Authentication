@@ -6,7 +6,7 @@ import JokesReducer from './jokes';
 const rootReducer = combineReducers({
   auth: AuthReducer,
   form: FormReducer,
-  users: JokesReducer,
+  jokes: JokesReducer,
 });
 
 export default rootReducer;

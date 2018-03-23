@@ -1,16 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../actions';
+import { register } from '../actions';
 import { reduxForm, Field } from 'redux-form';
 
-class Login extends React.Component {
+class Regsister extends React.Component {
+  componentDidMount() {
+  }
   handleFormSubmit({ username, password }) {
-    this.props.login(username, password, this.props.history);
+    this.props.register(username, password, this.props.history);
   }
 
   renderAlert() {
-    if (!this.props.error) return null;
-    return <h3>{this.props.error}</h3>
+    if (this.props.error) {
+      return <h3>{this.props.error}</h3>
+    }
+    if(this.props.authenticated) {
+      return <h3>You are already logged in</h3>;
+    }
+    return null;
   }
 
   render() {
@@ -23,6 +30,10 @@ class Login extends React.Component {
         <fieldset>
           <label>Password:</label>
           <Field name='password' component='input' type='text' />
+        </fieldset>
+        <fieldset>
+          <label>Confirm Password:</label>
+          <Field name='ConfirmPassword' component='input' type='text' />
         </fieldset>
         <button action='submit'>Log In</button>
         {this.renderAlert()}
@@ -37,9 +48,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-Login = connect(mapStateToProps, { login })(Login);
+Regsister = connect(mapStateToProps, { register })(Regsister);
 
 export default reduxForm({
   form: 'login',
-  fields: ['username', 'password']
-})(Login);
+  fields: ['username', 'password', 'confirmPassword']
+})(Regsister);

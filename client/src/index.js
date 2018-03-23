@@ -6,12 +6,15 @@ import Login from './components/login';
 import Jokes from './components/jokes';
 import Logout from './components/logout';
 import Register from './components/register';
+import Auth from './components/auth';
 import registerServiceWorker from './registerServiceWorker';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import reducers from './reducers';
+import { Provider } from 'react-redux';
 
-import ReduxThunk from 'redux-thunk';
-import Provider from 'react-redux';
+const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 
 ReactDOM.render(
     <Provider
@@ -20,11 +23,15 @@ ReactDOM.render(
             window.__REDUX_DEVTOOLS_EXTENSION__ &&
                 window.__REDUX_DEVTOOLS_EXTENSION__()
         )}>
-        <Router path="/" component={App} />
-        <Router path="/login" component={login} />
-        <Router path="/logout" component={Auth(logout)} />
-        <Router path="/register" component={register} />
-        <Router path="/jokes" component={Auth(jokes)} />
+        <Router>
+          <div>
+            <Route path="/" component={App} />
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={Auth(Logout)} />
+            <Route path="/register" component={Register} />
+            <Route path="/jokes" component={Auth(Jokes)} />
+          </div>
+        </Router>
     </Provider>,
     document.getElementById('root')
 );

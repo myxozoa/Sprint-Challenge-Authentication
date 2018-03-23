@@ -8,7 +8,7 @@ export const USER_REGISTERED = 'USER_REGISTERED';
 export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';
 export const USER_UNAUTHENTICATED = 'USER_UNAUTHENTICATED';
 export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
-export const GET_USERS = 'GET_USERS';
+export const GET_JOKES = 'GET_JOKES';
 export const CHECK_IF_AUTHENTICATED = 'CHECK_IF_AUTHENTICATED';
 
 export const authError = error => {
@@ -79,7 +79,7 @@ export const getJokes = () => {
       .get(`${ROOT_URL}/api/jokes`, { headers: {authorization: token }})
       .then(response => {
         dispatch({
-          type: GET_USERS,
+          type: GET_JOKES,
           payload: response.data
         });
       })

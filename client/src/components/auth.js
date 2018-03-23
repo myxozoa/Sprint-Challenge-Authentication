@@ -11,7 +11,7 @@ export default RestrictedComponent => {
 
     render() {
       return (
-        <div>{this.props.authenticated ? <RestrictedComponent props={...this.props} /> : null}</div>
+        <div>{this.props.authenticated ? <RestrictedComponent /> : null}</div>
       );
     }
   }

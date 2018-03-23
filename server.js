@@ -14,7 +14,7 @@ const corsOptions = {
 };
 
 server.use(bodyParser.json());
-server.use(cors());
+server.use(cors(corsOptions));
 
 routes(server);
 
